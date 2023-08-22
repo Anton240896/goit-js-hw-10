@@ -24,7 +24,7 @@ export function fetchBreeds() {
         });
 }
 
-export function breedCat() {
+export function fetchCatByBreed(breedId) {
     const INFO_CAT = 'https://api.thecatapi.com/v1/images/search';
     return axios.get(INFO_CAT, options)
         .then(response => {
