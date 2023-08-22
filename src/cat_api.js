@@ -25,14 +25,19 @@ export function fetchBreeds() {
 }
 
 export function fetchCatByBreed(breedId) {
-    const INFO_CAT = 'https://api.thecatapi.com/v1/images/search';
-    return axios.get(INFO_CAT, options)
-        .then(response => {
-            console.log("Response from breedCat:", response.data);
-            return response.data;
-        })
-        .catch(error => {
-            console.error("Error in breedCat:", error);
-            throw error;
-        });
+    const SEARCH_URL =  `https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`;
+    const SEARCH_OPTIONS = {
+        headers: {'x-api-key': API_KEY},
+    };
+    return axios.get(SEARCH_URL,SEARCH_OPTIONS)
+    .then(response => {
+        if(response.status !== 200) {
+            throw new Error(response.statusText);
+        }
+        return response.data;
+    })
+    .catch(error => {
+        console.error('Error in fetchCatByBreed:', error);
+        throw error;
+    })
 }

@@ -1,18 +1,28 @@
 import SlimSelect from "slim-select";
+import axios from "axios";
 import { Notify } from "notiflix";
-import { fetchBreeds, breedCat } from "./cat_api";
-
-
+import { fetchBreeds, fetchCatByBreed } from "./cat_api";
 
 
 
 const elem = {
-    body : document.querySelector('body'),
     breed_select : document.querySelector('.breed-select'),
     cat_info : document.querySelector('.cat-info')
 }
 
-fetchBreeds();
-breedCat();
+fetchBreeds()
+    .then( r => {
+        const markup = r.map(({id,name }) => `<option value="${id}">${name}</option>`);
+        select.insertAdjacentHTML('beforeend', markup);
+        new SlimSelect({ select: select });
+      });
+
+      elem.breed_select.addEventListener('change', optionClick)
+
+
+
+
+
+fetchCatByBreed();
 
 
