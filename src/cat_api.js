@@ -11,14 +11,28 @@ const options = {
     }
 }
 
-export default function fetchBreeds(evt) {
+export function fetchBreeds() {
     const BASE_URL = "https://api.thecatapi.com/v1/breeds";
-    return(BASE_URL, options.json())
-    }
+    return axios.get(BASE_URL, options)
+        .then(response => {
+            console.log("Response from fetchBreeds:", response.data);
+            return response.data;
+        })
+        .catch(error => {
+            console.error("Error in fetchBreeds:", error);
+            throw error;
+        });
+}
 
-    export default function breedCat() {
-        const INFO_CAT = 'https://api.thecatapi.com/v1/images/search';
-        return (INFO_CAT, options.json())
-    }
-
-
+export function breedCat() {
+    const INFO_CAT = 'https://api.thecatapi.com/v1/images/search';
+    return axios.get(INFO_CAT, options)
+        .then(response => {
+            console.log("Response from breedCat:", response.data);
+            return response.data;
+        })
+        .catch(error => {
+            console.error("Error in breedCat:", error);
+            throw error;
+        });
+}

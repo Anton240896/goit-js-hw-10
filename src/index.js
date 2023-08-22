@@ -1,6 +1,8 @@
 import SlimSelect from "slim-select";
 import { Notify } from "notiflix";
-import { fetchBreeds } from "./cat_api";
+import { fetchBreeds, breedCat } from "./cat_api";
+
+
 
 
 
@@ -9,4 +11,8 @@ const elem = {
     breed_select : document.querySelector('.breed-select'),
     cat_info : document.querySelector('.cat-info')
 }
+
+fetchBreeds();
+breedCat();
+
 
