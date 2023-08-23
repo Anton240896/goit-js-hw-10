@@ -10,15 +10,18 @@ axios.defaults.headers.common["x-api-key"] = API_KEY;      //      http request
 const elem = {
     breed_select : document.querySelector('.breed-select'),
     cat_info : document.querySelector('.cat-info'),
-    loader : document.querySelector('.loader')
+    loader : document.querySelector('.loader'),
+    error : document.querySelector('.error')
 }
+
+elem.error.classList.add('hidden');
 elem.loader.classList.add('hidden');
 
 fetchBreeds()                  //     collection of breeds
     .then( images => {
         const markup = images.map(({id,name }) => `<option value="${id}">${name}</option>`);
         elem.breed_select.insertAdjacentHTML('beforeend', markup);
-        new SlimSelect({ breed_select: breed_select });
+        new SlimSelect;
       });
 
 
