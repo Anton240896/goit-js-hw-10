@@ -1,8 +1,10 @@
 import axios from "axios";
+import { Notify } from "notiflix";
+
 
 
 const API_KEY = 'live_afqLVEwYbIw2J9sEFake7EWe481wyVS2QNq5FwWJnRmAeQ4OmU0tlcq9CLwTenlh';
-axios.defaults.headers.common["x-api-key"] = API_KEY;
+axios.defaults.headers.common["x-api-key"] = API_KEY;      //      http request
 
 const options = {
     headers: {
@@ -14,12 +16,12 @@ const options = {
 export function fetchBreeds() {
     const BASE_URL = "https://api.thecatapi.com/v1/breeds";
     return axios.get(BASE_URL, options)
-        .then(response => {
-            console.log("Response from fetchBreeds:", response.data);
+        .then(response => {        //   collection of breeds
+            Notify.success("Response from fetchBreeds:", response.data);
             return response.data;
         })
         .catch(error => {
-            console.error("Error in fetchBreeds:", error);
+            Notify.failure("Error in fetchBreeds:", error);
             throw error;
         });
 }
@@ -27,17 +29,22 @@ export function fetchBreeds() {
 export function fetchCatByBreed(breedId) {
     const SEARCH_URL =  `https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`;
     const SEARCH_OPTIONS = {
-        headers: {'x-api-key': API_KEY},
-    };
+        headers: {    //      information about the cat
+            method: "GET",
+            'x-api-key' : API_KEY,
+        }
+    }; 
+
+    
     return axios.get(SEARCH_URL,SEARCH_OPTIONS)
     .then(response => {
         if(response.status !== 200) {
             throw new Error(response.statusText);
         }
         return response.data;
-    })
+    })                                              // display of cats
     .catch(error => {
-        console.error('Error in fetchCatByBreed:', error);
+        Notify.failure('Error in fetchCatByBreed:', error);
         throw error;
     })
 }
