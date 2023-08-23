@@ -9,8 +9,10 @@ axios.defaults.headers.common["x-api-key"] = API_KEY;      //      http request
 
 const elem = {
     breed_select : document.querySelector('.breed-select'),
-    cat_info : document.querySelector('.cat-info')
+    cat_info : document.querySelector('.cat-info'),
+    loader : document.querySelector('.loader')
 }
+elem.loader.classList.add('hidden');
 
 fetchBreeds()                  //     collection of breeds
     .then( images => {
@@ -38,7 +40,7 @@ function displayCatCard(res) {
     const markup = `
       <h1 class="header">${breed_info.name}</h1>
       <div class="card">
-        <img src="${IMAGE.url}" alt="Cat breed ${IMAGE.alt}" class="image" width=500>
+        <img src="${IMAGE.url}" alt="Cat breed ${IMAGE.alt}" class="image" width=200px>
         <div class="description">
           <p class="text">${breed_info.description}</p>
           <p class="text"><b>Temperament:</b> ${breed_info.temperament}</p>
