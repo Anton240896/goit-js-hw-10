@@ -23,7 +23,6 @@ export function fetchBreeds() {
             Notify.failure("❌ Oops! Something went wrong! Try reloading the page!");
             throw error;
         })
-    
 
 }
 

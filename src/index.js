@@ -16,7 +16,7 @@ const elem = {
 }
 
 elem.error.classList.add('hidden');
-// elem.loader.classList.add('hidden');
+elem.loader.classList.add('loader');
 
 // new SlimSelect({                //   library
 //   select: '#single'
@@ -27,21 +27,18 @@ fetchBreeds()                  //     collection of breeds
         const markup = images.map(({id,name }) => `<option value="${id}">${name}</option>`);
         elem.breed_select.insertAdjacentHTML('beforeend', markup);
       })
-      .finally(loadingOn)
-
+      .finally(loadingOn);
 
       elem.breed_select.addEventListener('change', optionClick)
 function optionClick(evt) {                //    select click
     const select_option = evt.currentTarget.value;
     fetchCatByBreed(select_option)
-    .then(displayCatCard);
+    .then(displayCatCard)
     console.log(evt)
-
   }
 
-
-
 function displayCatCard(res) {
+
     console.log(res);
     const breed_info = res[0].breeds[0];
     const IMAGE = {
@@ -59,6 +56,8 @@ function displayCatCard(res) {
       </div>
     `;
   elem.cat_info.innerHTML = markup;
+
+
   }
 
   
