@@ -17,13 +17,14 @@ export function fetchBreeds() {
     const BASE_URL = "https://api.thecatapi.com/v1/breeds";
     return axios.get(BASE_URL, options)
         .then(response => {        //   collection of breeds
-            Notify.success("Response from fetchBreeds:", response.data);
             return response.data;
         })
         .catch(error => {
-            Notify.failure("Error in fetchBreeds:", error);
+            Notify.failure("❌ Oops! Something went wrong! Try reloading the page!");
             throw error;
-        });
+        })
+    
+
 }
 
 export function fetchCatByBreed(breedId) {
@@ -44,7 +45,9 @@ export function fetchCatByBreed(breedId) {
         return response.data;
     })                                              // display of cats
     .catch(error => {
-        Notify.failure('Error in fetchCatByBreed:', error);
+        Notify.failure("❌ Oops! Something went wrong! Try reloading the page!");
         throw error;
     })
+
+
 }

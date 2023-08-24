@@ -2,6 +2,7 @@ import SlimSelect from "slim-select";
 import axios from "axios";
 import { fetchBreeds, fetchCatByBreed } from "./cat_api";
 
+
 const API_KEY = 
 'live_afqLVEwYbIw2J9sEFake7EWe481wyVS2QNq5FwWJnRmAeQ4OmU0tlcq9CLwTenlh';
 axios.defaults.headers.common["x-api-key"] = API_KEY;      //      http request
@@ -15,14 +16,18 @@ const elem = {
 }
 
 elem.error.classList.add('hidden');
-elem.loader.classList.add('hidden');
+// elem.loader.classList.add('hidden');
+
+// new SlimSelect({                //   library
+//   select: '#single'
+// })
 
 fetchBreeds()                  //     collection of breeds
     .then( images => {
         const markup = images.map(({id,name }) => `<option value="${id}">${name}</option>`);
         elem.breed_select.insertAdjacentHTML('beforeend', markup);
-        new SlimSelect;
-      });
+      })
+      .finally(loadingOn)
 
 
       elem.breed_select.addEventListener('change', optionClick)
@@ -30,8 +35,11 @@ function optionClick(evt) {                //    select click
     const select_option = evt.currentTarget.value;
     fetchCatByBreed(select_option)
     .then(displayCatCard);
-    console.log(evt);
-}
+    console.log(evt)
+
+  }
+
+
 
 function displayCatCard(res) {
     console.log(res);
@@ -52,3 +60,8 @@ function displayCatCard(res) {
     `;
   elem.cat_info.innerHTML = markup;
   }
+
+  
+function loadingOn() {
+  elem.loader.classList.add('hidden');
+}
