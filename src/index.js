@@ -33,28 +33,31 @@ fetchBreeds()
       })
       .finally(() => {
         loadingOff()
+        errorOff()
       });
 
     
-      elem.breed_select.addEventListener('change', optionClick);
-
-function optionClick(evt) {               
-    const select_option = evt.currentTarget.value;
-    loadingOn();
-                                      
-    fetchCatByBreed(select_option)
-    .then(result => {
-      displayCatCard(result);
-    })                             //    select click
-    .catch(error => {
-      console.log(error);
-      errorOn("❌ Oops! Something went wrong! Try reloading the page!");
-    })
-    .finally(() => {
-      loadingOff();
-    })
-  };
-
+elem.breed_select.addEventListener('change', optionClick)
+function optionClick(evt) {
+  const select_option = evt.currentTarget.value;
+  loadingOn();
+  fetchCatByBreed(select_option)
+      .then(result => {
+          if (result.length > 0) {
+              displayCatCard(result);
+          } else {
+              elem.cat_info.innerHTML = ""; 
+              errorOn("❌  This breed doesn't have any available cats.");
+          }
+      })
+      .catch(error => {
+          console.log(error);
+          errorOn("❌  Oops! Something went wrong! Try reloading the page!");
+      })
+      .finally(() => {
+          loadingOff();
+      });
+    }
 function displayCatCard(res) {
     console.log(res);
     const breed_info = res[0].breeds[0];
