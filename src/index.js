@@ -29,6 +29,7 @@ fetchBreeds()                  //     collection of breeds
       })
       .finally(loadingOn);
 
+
       elem.breed_select.addEventListener('change', optionClick)
 function optionClick(evt) {                //    select click
     const select_option = evt.currentTarget.value;
@@ -38,7 +39,6 @@ function optionClick(evt) {                //    select click
   }
 
 function displayCatCard(res) {
-
     console.log(res);
     const breed_info = res[0].breeds[0];
     const IMAGE = {
@@ -56,8 +56,6 @@ function displayCatCard(res) {
       </div>
     `;
   elem.cat_info.innerHTML = markup;
-
-
   }
 
   
