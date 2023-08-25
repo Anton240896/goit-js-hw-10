@@ -1,6 +1,10 @@
 import SlimSelect from "slim-select";
 import axios from "axios";
 import { fetchBreeds, fetchCatByBreed } from "./cat_api";
+import { loadingOn, loadingOff } from "./loading";
+import { errorOn, errorOff} from "./error";
+
+
 
 
 const API_KEY = 
@@ -15,8 +19,7 @@ const elem = {
     error : document.querySelector('.error')
 }
 
-elem.error.classList.add('hidden');
-elem.loader.classList.add('loader');
+errorOff();
 
 // new SlimSelect({                //   library
 //   select: '#single'
@@ -25,17 +28,34 @@ elem.loader.classList.add('loader');
 fetchBreeds()                  //     collection of breeds
     .then( images => {
         const markup = images.map(({id,name }) => `<option value="${id}">${name}</option>`);
-        elem.breed_select.insertAdjacentHTML('beforeend', markup);
+        elem.breed_select.innerHTML = markup.join('');
       })
-      .finally(loadingOn);
+      .catch(error => {
+        console.log(error);
+       errorOn("❌ Oops! Something went wrong! Try reloading the page!");
+      })
+      .finally(() => {
+        loadingOff();
+      });
 
+    
 
       elem.breed_select.addEventListener('change', optionClick)
 function optionClick(evt) {                //    select click
     const select_option = evt.currentTarget.value;
+    loadingOn();
+
     fetchCatByBreed(select_option)
-    .then(displayCatCard)
-    console.log(evt)
+    .then(result => {
+      displayCatCard(result);
+    })
+    .catch(error => {
+      console.log(error);
+      errorOn("❌ Oops! Something went wrong! Try reloading the page!")
+    })
+    .finally(() => {
+      loadingOff();
+    });
   }
 
 function displayCatCard(res) {
@@ -58,7 +78,3 @@ function displayCatCard(res) {
   elem.cat_info.innerHTML = markup;
   }
 
-  
-function loadingOn() {
-  elem.loader.classList.add('hidden');
-}
