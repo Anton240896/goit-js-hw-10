@@ -41,11 +41,11 @@ fetchBreeds()
 function optionClick(evt) {               
     const select_option = evt.currentTarget.value;
     loadingOn();
-                                      //    select click
+                                      
     fetchCatByBreed(select_option)
     .then(result => {
       displayCatCard(result);
-    })
+    })                             //    select click
     .catch(error => {
       console.log(error);
       errorOn("❌ Oops! Something went wrong! Try reloading the page!")
