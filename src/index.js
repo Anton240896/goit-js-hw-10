@@ -2,7 +2,7 @@ import SlimSelect from "slim-select";
 import axios from "axios";
 import { fetchBreeds, fetchCatByBreed } from "./cat_api";
 import { loadingOn, loadingOff } from "./loading";
-import { errorOn, errorOff, errorHide} from "./error";
+import { errorOn, errorOff } from "./error";
 
 const API_KEY = 
 'live_afqLVEwYbIw2J9sEFake7EWe481wyVS2QNq5FwWJnRmAeQ4OmU0tlcq9CLwTenlh';
