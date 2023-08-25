@@ -22,13 +22,13 @@ errorOff();
 //   select: '#single'
 // })
 
-fetchBreeds()                  //     collection of breeds
+fetchBreeds()                 
     .then( images => {
         const markup = images.map(({id,name }) => `<option value="${id}">${name}</option>`);
         elem.breed_select.innerHTML = markup.join('');
       })
       .catch(error => {
-        console.log(error);
+        console.log(error);          //     collection of breeds
        errorOn("❌ Oops! Something went wrong! Try reloading the page!");
       })
       .finally(() => {
@@ -36,11 +36,12 @@ fetchBreeds()                  //     collection of breeds
       });
 
     
-      elem.breed_select.addEventListener('change', optionClick)
-function optionClick(evt) {                //    select click
+      elem.breed_select.addEventListener('change', optionClick);
+
+function optionClick(evt) {               
     const select_option = evt.currentTarget.value;
     loadingOn();
-
+                                      //    select click
     fetchCatByBreed(select_option)
     .then(result => {
       displayCatCard(result);
@@ -60,7 +61,7 @@ function displayCatCard(res) {
     const IMAGE = {
       url: res[0].url,
       alt: breed_info.name,
-    }                                              // display of cats
+    }                                 // display of cats
     const markup = `
       <h1 class="header">${breed_info.name}</h1>
       <div class="card">
