@@ -45,7 +45,7 @@ function optionClick(evt) {
       .then(result => {
           if (result.length > 0) {
               displayCatCard(result);
-          } else {
+          } else {                     //     select click
               elem.cat_info.innerHTML = ""; 
               errorOn("❌  This breed doesn't have any available cats.");
           }
@@ -58,6 +58,8 @@ function optionClick(evt) {
           loadingOff();
       });
     }
+
+
 function displayCatCard(res) {
     console.log(res);
     const breed_info = res[0].breeds[0];
