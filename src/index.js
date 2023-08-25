@@ -2,7 +2,7 @@ import SlimSelect from "slim-select";
 import axios from "axios";
 import { fetchBreeds, fetchCatByBreed } from "./cat_api";
 import { loadingOn, loadingOff } from "./loading";
-import { errorOn, errorOff} from "./error";
+import { errorOn, errorOff, errorHide} from "./error";
 
 const API_KEY = 
 'live_afqLVEwYbIw2J9sEFake7EWe481wyVS2QNq5FwWJnRmAeQ4OmU0tlcq9CLwTenlh';
@@ -32,7 +32,7 @@ fetchBreeds()
        errorOn("❌ Oops! Something went wrong! Try reloading the page!");
       })
       .finally(() => {
-        loadingOff();
+        loadingOff()
       });
 
     
@@ -48,12 +48,12 @@ function optionClick(evt) {
     })                             //    select click
     .catch(error => {
       console.log(error);
-      errorOn("❌ Oops! Something went wrong! Try reloading the page!")
+      errorOn("❌ Oops! Something went wrong! Try reloading the page!");
     })
     .finally(() => {
       loadingOff();
-    });
-  }
+    })
+  };
 
 function displayCatCard(res) {
     console.log(res);
@@ -73,5 +73,6 @@ function displayCatCard(res) {
       </div>
     `;
   elem.cat_info.innerHTML = markup;
-  }
+  errorOff();
+  };
 
