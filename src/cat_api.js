@@ -1,8 +1,6 @@
 import axios from "axios";
 import { Notify } from "notiflix";
 
-
-
 const API_KEY = 
 'live_afqLVEwYbIw2J9sEFake7EWe481wyVS2QNq5FwWJnRmAeQ4OmU0tlcq9CLwTenlh';
 axios.defaults.headers.common["x-api-key"] = API_KEY;      //      http request
@@ -24,8 +22,6 @@ export function fetchBreeds() {
             Notify.failure("❌ Oops! Something went wrong! Try reloading the page!");
             throw error;
         })
-        
-
 }
 
 export function fetchCatByBreed(breedId) {
