@@ -4,9 +4,6 @@ import { fetchBreeds, fetchCatByBreed } from "./cat_api";
 import { loadingOn, loadingOff } from "./loading";
 import { errorOn, errorOff} from "./error";
 
-
-
-
 const API_KEY = 
 'live_afqLVEwYbIw2J9sEFake7EWe481wyVS2QNq5FwWJnRmAeQ4OmU0tlcq9CLwTenlh';
 axios.defaults.headers.common["x-api-key"] = API_KEY;      //      http request
@@ -39,7 +36,6 @@ fetchBreeds()                  //     collection of breeds
       });
 
     
-
       elem.breed_select.addEventListener('change', optionClick)
 function optionClick(evt) {                //    select click
     const select_option = evt.currentTarget.value;
