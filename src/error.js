@@ -5,7 +5,6 @@ const elem = {
     error : document.querySelector('.error')
 }
 
-  
   export function errorOn(message) {
     elem.error.textContent = message;    //      show error
     elem.error.classList.remove('hidden');
