@@ -19,7 +19,6 @@ const elem = {
 
 errorOff();
 
-
 // new SlimSelect({                //   library
 //   select: '#single'
 // })
