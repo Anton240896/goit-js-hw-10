@@ -1,4 +1,6 @@
 import SlimSelect from "slim-select";
+import { Notify } from "notiflix";
+
 import axios from "axios";
 import { fetchBreeds, fetchCatByBreed } from "./cat_api";
 import { loadingOn, loadingOff } from "./loading";
@@ -29,7 +31,7 @@ fetchBreeds()
       })
       .catch(error => {
         console.log(error);          //     collection of breeds
-       errorOn("❌ Oops! Something went wrong! Try reloading the page!");
+       Notify.failure("❌ Oops! Something went wrong! Try reloading the page!");
       })
       .finally(() => {
         loadingOff()
@@ -47,18 +49,18 @@ function optionClick(evt) {
               displayCatCard(result);
           } else {                     //     select click
               elem.cat_info.innerHTML = ""; 
-              errorOn("❌  This breed doesn't have any available cats.");
+              Notify.failure("❌  This breed doesn't have any available cats.");
           }
       })
       .catch(error => {
           console.log(error);
-          errorOn("❌  Oops! Something went wrong! Try reloading the page!");
+          Notify.failure("❌  Oops! Something went wrong! Try reloading the page!");
       })
       .finally(() => {
           loadingOff();
       });
-    }
 
+    }
 
 function displayCatCard(res) {
     console.log(res);
