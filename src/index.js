@@ -1,7 +1,6 @@
 import SlimSelect from "slim-select";
-import { Notify } from "notiflix";
-
 import axios from "axios";
+import { Notify } from "notiflix";
 import { fetchBreeds, fetchCatByBreed } from "./cat_api";
 import { loadingOn, loadingOff } from "./loading";
 import { errorOn, errorOff } from "./error";
@@ -19,6 +18,7 @@ const elem = {
 }
 
 errorOff();
+
 
 // new SlimSelect({                //   library
 //   select: '#single'
