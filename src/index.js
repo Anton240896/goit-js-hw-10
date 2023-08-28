@@ -30,7 +30,9 @@ fetchBreeds()
       })
       .catch(error => {
         console.log(error);          //     collection of breeds
-       Notify.failure("❌ Oops! Something went wrong! Try reloading the page!");
+       Notify.failure("❌ Oops! Something went wrong! Try reloading the page!"),{
+        width: '500px'
+       }
       })
       .finally(() => {
         loadingOff()
@@ -46,14 +48,19 @@ function optionClick(evt) {
       .then(result => {
           if (result.length > 0) {
               displayCatCard(result);
-          } else {                     //     select click
+          } else {                     //    error was not shown when choosing another breed
               elem.cat_info.innerHTML = ""; 
-              Notify.failure("❌  This breed doesn't have any available cats.");
+              Notify.failure("❌  This breed doesn't have any available cats."),{
+              width: '500px',
+              
+              }
           }
       })
       .catch(error => {
           console.log(error);
-          Notify.failure("❌  Oops! Something went wrong! Try reloading the page!");
+          Notify.failure("❌  Oops! Something went wrong! Try reloading the page!"), {
+            width: '500px'
+          }
       })
       .finally(() => {
           loadingOff();
