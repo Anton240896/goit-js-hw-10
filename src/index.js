@@ -25,6 +25,7 @@ errorOff();
 
 fetchBreeds()                 
     .then( images => {
+      
         const markup = images.map(({id,name }) => `<option value="${id}">${name}</option>`);
         elem.breed_select.innerHTML = markup.join('');
       })
@@ -88,4 +89,3 @@ function displayCatCard(res) {
   elem.cat_info.innerHTML = markup;
   errorOff();
   };
-
