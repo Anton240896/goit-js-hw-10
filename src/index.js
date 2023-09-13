@@ -28,6 +28,7 @@ fetchBreeds()
       
         const markup = images.map(({id,name }) => `<option value="${id}">${name}</option>`);
         elem.breed_select.innerHTML = markup.join('');
+        
       })
       .catch(error => {
         console.log(error);          //     collection of breeds
